@@ -63,10 +63,10 @@
 Un problema general de programación entera es:
 
 \begin{align*}
-    \min \quad & c^T x \\
-    \text{s.a.} \quad & Ax = b \\
-    & x \geq 0 \\
-    & x \in \mathbb{Z}^n
+    \min \quad        & c^T x              \\
+    \text{s.a.} \quad & Ax = b             \\
+                      & x \geq 0           \\
+                      & x \in \mathbb{Z}^n
 \end{align*}
 
 \subsection{Relajación Lineal}
@@ -74,10 +74,10 @@ Un problema general de programación entera es:
 La relajación lineal de un problema de programación entera es:
 
 \begin{align*}
-    \min \quad & z^* = c^T x & \sim && z^o = c^T x \\
-    \text{s.a.} \quad & Ax = b & && Ax = b \\
-    & x \geq 0 &&& x \geq 0 \\
-    & x \in \mathbb{Z}^n &&& x \in \mathbb{R}^n
+    \min \quad        & z^* = c^T x        & \sim &  & z^o = c^T x        \\
+    \text{s.a.} \quad & Ax = b             &      &  & Ax = b             \\
+                      & x \geq 0           &      &  & x \geq 0           \\
+                      & x \in \mathbb{Z}^n &      &  & x \in \mathbb{R}^n
 \end{align*}
 
 Como el problema se relaja, se tiene que $z^o \leq z^*$, ya que el problema relajado tiene un dominio factible mayor.
@@ -87,10 +87,10 @@ Como el problema se relaja, se tiene que $z^o \leq z^*$, ya que el problema rela
 Asumiendo un problema de programación entera $S$ acotado, se puede ocupar la técnica de relajación lineal y obtener:
 
 \begin{align*}
-    \text{P}_0) \quad & z^o = c^T x \\
-    & Ax = b \\
-    & x \geq 0 \\
-    & x \in \mathbb{R}^n
+    \text{P}_0) \quad & z^o = c^T x        \\
+                      & Ax = b             \\
+                      & x \geq 0           \\
+                      & x \in \mathbb{R}^n
 \end{align*}
 
 Y ocupando Simplex resolver el problema relajado, es decir, $z_o = c^T x_o$. Si $x_o$ tiene alguna entrada fraccionaria, se puede ocupar la técnica de \textbf{Branch and Bound}.
@@ -100,19 +100,19 @@ Y ocupando Simplex resolver el problema relajado, es decir, $z_o = c^T x_o$. Si 
 Si $x_o$ tiene alguna entrada fraccionaria, se puede seleccionar una variable $x_j$ con valor fraccionario y se puede crear dos subproblemas:
 
 \begin{align*}
-    \text{P}_1) \quad & z^o = c^T x \\
-    & Ax = b \\
-    & x \geq 0 \\
-    & x \in \mathbb{R}^n \\
-    & x_j \leq \lfloor x_j \rfloor
+    \text{P}_1) \quad & z^o = c^T x                  \\
+                      & Ax = b                       \\
+                      & x \geq 0                     \\
+                      & x \in \mathbb{R}^n           \\
+                      & x_j \leq \lfloor x_j \rfloor
 \end{align*}
 
 \begin{align*}
-    \text{P}_2) \quad & z^o = c^T x \\
-    & Ax = b \\
-    & x \geq 0 \\
-    & x \in \mathbb{R}^n \\
-    & x_j \geq \lceil x_j \rceil
+    \text{P}_2) \quad & z^o = c^T x                \\
+                      & Ax = b                     \\
+                      & x \geq 0                   \\
+                      & x \in \mathbb{R}^n         \\
+                      & x_j \geq \lceil x_j \rceil
 \end{align*}
 
 \subsubsection{Bound}
@@ -124,25 +124,25 @@ Repitiendo el proceso de Branch and Bound, se puede encontrar la solución ópti
 \begin{center}
     \begin{tikzpicture}
         \node {P$_0$}
-            child {node {P$_1$}
+        child {node {P$_1$}
                 child {node {P$_3$}
-                    child {node {P$_7$}}
-                    child {node {P$_8$}}
-                }
+                        child {node {P$_7$}}
+                        child {node {P$_8$}}
+                    }
                 child {node {P$_4$}
-                    child {node {}}
-                    child {node {P$_{9}$}}
-                }
+                        child {node {}}
+                        child {node {P$_{9}$}}
+                    }
             }
-            child {node {P$_2$}
+        child {node {P$_2$}
                 child {node {}
-                    child {node {}}
-                    child {node {}}
-                }
+                        child {node {}}
+                        child {node {}}
+                    }
                 child {node {P$_5$}
-                    child {node {}}
-                    child {node {P$_{10}$}}
-                }
+                        child {node {}}
+                        child {node {P$_{10}$}}
+                    }
             };
     \end{tikzpicture}
 \end{center}
@@ -161,11 +161,11 @@ La técnica de \textbf{Branch and Cut} es una extensión de \textbf{Branch and B
 \textbf{Ejemplo:}
 
 \begin{flalign*}
-    &&0x_1-\frac{3}{4}x_2+\frac{1}{3}x_3-3\frac{1}{4}x_4 &= 10\frac{3}{7}& \\
-    &\text{Paso 1:}\\
-    &&(-1 + \frac{1}{4})x_2 + (0 + \frac{1}{3})x_3 + (-4  + \frac{3}{4})x_4 &= 10 +\frac{3}{7}& \\
-    &\text{Paso 2:}\\
-    &&\frac{1}{4}x_2 + \frac{1}{3}x_3 + \frac{3}{4}x_4 &\geq \frac{3}{7}& \\
+     &                & 0x_1-\frac{3}{4}x_2+\frac{1}{3}x_3-3\frac{1}{4}x_4                    & = 10\frac{3}{7}   & \\
+     & \text{Paso 1:}                                                                                               \\
+     &                & (-1 + \frac{1}{4})x_2 + (0 + \frac{1}{3})x_3 + (-4  + \frac{3}{4})x_4 & = 10 +\frac{3}{7} & \\
+     & \text{Paso 2:}                                                                                               \\
+     &                & \frac{1}{4}x_2 + \frac{1}{3}x_3 + \frac{3}{4}x_4                      & \geq \frac{3}{7}  & \\
 \end{flalign*}
 
 Más información \href{https://www.ou.edu/class/che-design/che5480-11/Gomory%20Cuts-The%20How%20and%20the%20Why.pdf}{acá}
@@ -177,7 +177,7 @@ Para restricciones que son la suma de variables binarias con coeficientes no neg
 Se expresa de la forma:
 
 \begin{align*}
-    \sum_{j \in J} a_j x_j \leq b\\
+    \sum_{j \in J} a_j x_j \leq b \\
     \text{Donde } a_j \geq 0 \text{ y } b \geq 0
     x \in \{0, 1\}^n
 \end{align*}
@@ -258,8 +258,8 @@ Si $x^*$ es un mínimo local, entonces existe $r>0$ tal que si el punto inicial 
 El \textbf{Teorema de Lagrange} para un problema:
 
 \begin{align*}
-    \text{minimizar} \quad & f(x) \\
-    \text{sujeto a} \quad & g_i(x) = a_i \quad \forall i = 1, \ldots, m
+    \text{minimizar} \quad & f(x)                                        \\
+    \text{sujeto a} \quad  & g_i(x) = a_i \quad \forall i = 1, \ldots, m
 \end{align*}
 
 Se puede escribir como:
@@ -275,8 +275,8 @@ La solución óptima para los multiplicadores de lagrange se determina con las d
 Para encontrar los puntos críticos de $\mathrm{L}(x, \lambda)$, se deben resolver las siguientes ecuaciones:
 
 \begin{align*}
-    \nabla f(x) + \sum_{i=1}^r \lambda_i \nabla g_i(x) &= 0 \\
-    g_i(x) &= a_i \quad \forall i = 1, \ldots, m
+    \nabla f(x) + \sum_{i=1}^r \lambda_i \nabla g_i(x) & = 0                                  \\
+    g_i(x)                                             & = a_i \quad \forall i = 1, \ldots, m
 \end{align*}
 
 Si $x^*$ es un mínimo local\dots
@@ -285,8 +285,8 @@ Si $x^*$ es un mínimo local\dots
 Primero se deben evaluar las condiciones de regularidad. Para esto, se debe evaluar la matriz jacobiana de $g(x)$ en $x^*$, y si esta matriz es de rango completo, entonces se cumple la condición de regularidad.
 
 \begin{align*}
-    \nabla f(x^*) + \sum_{i=1}^r \lambda_i \nabla g_i(x^*) &= 0 \\
-    g_i(x^*) &= a_i \quad \forall i = 1, \ldots, m
+    \nabla f(x^*) + \sum_{i=1}^r \lambda_i \nabla g_i(x^*) & = 0                                  \\
+    g_i(x^*)                                               & = a_i \quad \forall i = 1, \ldots, m
 \end{align*}
 
 Luego, se debe evaluar la matriz hessiana de $\mathrm{L}(x, \lambda)$ en $(x^*, \lambda^*)$, y si esta matriz es definida positiva, entonces $x^*$ es un mínimo local.
@@ -304,9 +304,9 @@ Un conjunto $K \subset \mathbb{R}^n$ es convexo si y solo si para todo $x_1, x_2
 (Sea $f(x)$ y $g(x)$ continuamente derivables) Si $x_0$ es un mínimo local de $f(x)$ sujeto a $g(x) = 0$, entonces existen $\lambda_0, \lambda_1, \ldots, \lambda_m$ tales que:
 
 \begin{align*}
-    \nabla f(x_0) + \sum_{i=1}^{m} \lambda_i \nabla g_i(x_0) &= 0 \\
-    \lambda_i g_i(x_0) &= 0 \quad \forall i = 1, \ldots, m \\
-    \lambda_i &\geq 0 \quad \forall i = 1, \ldots, m
+    \nabla f(x_0) + \sum_{i=1}^{m} \lambda_i \nabla g_i(x_0) & = 0                                   \\
+    \lambda_i g_i(x_0)                                       & = 0 \quad \forall i = 1, \ldots, m    \\
+    \lambda_i                                                & \geq 0 \quad \forall i = 1, \ldots, m
 \end{align*}
 
 
@@ -318,21 +318,21 @@ Un conjunto $K \subset \mathbb{R}^n$ es convexo si y solo si para todo $x_1, x_2
     Extrahído de \href{https://www.bbau.ac.in/dept/UIET/EME-601%20Operation%20Research.pdf}{libro de problemas de optimización}.
 
     \begin{align*}
-        z \quad&=f(x_1,x_2)=2x_1x_2\\
-        \text{s.a.} \quad& x_1^2+x_2^2=1
+        z \quad           & =f(x_1,x_2)=2x_1x_2 \\
+        \text{s.a.} \quad & x_1^2+x_2^2=1
     \end{align*}
 \end{question}
 
 \begin{solution}
     \begin{align*}
-        L(x_1,x_2,\lambda) &= f(x_1,x_2) + \lambda(g(x_1,x_2)-1)\\
-        &= 2x_1x_2 + \lambda(x_1^2+x_2^2-1)
+        L(x_1,x_2,\lambda) & = f(x_1,x_2) + \lambda(g(x_1,x_2)-1) \\
+                           & = 2x_1x_2 + \lambda(x_1^2+x_2^2-1)
     \end{align*}
 
     \begin{align*}
-        \frac{\partial L}{\partial x_1} &= 2x_2 + 2\lambda x_1 = 0\\
-        \frac{\partial L}{\partial x_2} &= 2x_1 + 2\lambda x_2 = 0\\
-        \frac{\partial L}{\partial \lambda} &= x_1^2 + x_2^2 - 1 = 0
+        \frac{\partial L}{\partial x_1}     & = 2x_2 + 2\lambda x_1 = 0 \\
+        \frac{\partial L}{\partial x_2}     & = 2x_1 + 2\lambda x_2 = 0 \\
+        \frac{\partial L}{\partial \lambda} & = x_1^2 + x_2^2 - 1 = 0
     \end{align*}
 
     Resolviendo el sistema de ecuaciones, se obtiene que $x_1 = \pm \frac{1}{\sqrt{2}}$ y $x_2 = \pm \frac{1}{\sqrt{2}}$.
@@ -346,11 +346,11 @@ Un conjunto $K \subset \mathbb{R}^n$ es convexo si y solo si para todo $x_1, x_2
 \begin{solution}
     Asumiendo que $\nabla f(x^*)\neq 0$, entonces:
     \begin{align*}
-        h&=-\nabla f(x^*)\\
-        g(t)&=f(x^* + th) \quad \frac{\mathrm{g}}{\mathrm{d}t}\\
-        g'(0)&=\nabla f(x^*)^T h\\
-        g'(0)&=\nabla f(x^*)^T (-\nabla f(x^*))= -||\nabla f(x^*)||^2 < 0\\
-        &\therefore g'(0) < 0
+        h     & =-\nabla f(x^*)                                             \\
+        g(t)  & =f(x^* + th) \quad \frac{\mathrm{g}}{\mathrm{d}t}           \\
+        g'(0) & =\nabla f(x^*)^T h                                          \\
+        g'(0) & =\nabla f(x^*)^T (-\nabla f(x^*))= -||\nabla f(x^*)||^2 < 0 \\
+              & \therefore g'(0) < 0
     \end{align*}
     Como $x^*$ es mínimo local, no puede haber un valor más pequeño, luego $\Rightarrow \! \Leftarrow$. Por lo tanto: $\nabla f(x^*)=0$.
 \end{solution}
@@ -365,9 +365,9 @@ Un conjunto $K \subset \mathbb{R}^n$ es convexo si y solo si para todo $x_1, x_2
 
 \begin{question}
     \begin{align*}
-        \min \quad & x^2+y^2 \\
-        \text{s.a.} \quad & xy\geq 4\\
-        & x+y=5
+        \min \quad        & x^2+y^2  \\
+        \text{s.a.} \quad & xy\geq 4 \\
+                          & x+y=5
     \end{align*}
 \end{question}
 
@@ -375,9 +375,9 @@ Un conjunto $K \subset \mathbb{R}^n$ es convexo si y solo si para todo $x_1, x_2
     Condición de regularidad:
     \begin{align*}
         J[g(x^*)] = \begin{bmatrix}
-            y & x\\
-            1 & 1
-        \end{bmatrix}
+                        y & x \\
+                        1 & 1
+                    \end{bmatrix}
     \end{align*}
 
     Para todo $x=y$ tengo rango completo. Así, el único punto no regular es $(2.5,2.5)$. Así, encontramos todos los puntos KKT.
@@ -385,44 +385,44 @@ Un conjunto $K \subset \mathbb{R}^n$ es convexo si y solo si para todo $x_1, x_2
     Ahora estandarizamos el problema (despejamos a 0):
 
     \begin{align*}
-        \min \quad & x^2+y^2 \\
-        \text{s.a.} \quad & xy-4\geq 0\\
-        & x+y-5=0
+        \min \quad        & x^2+y^2    \\
+        \text{s.a.} \quad & xy-4\geq 0 \\
+                          & x+y-5=0
     \end{align*}
 
     Lagrangiano:
 
     \begin{align*}
-        L(x,y,\mu, \lambda) &= x^2+y^2 + \mu(xy-4) + \lambda(x+y-5)\\
-        \frac{\partial L}{\partial x} &= 2x + \mu y + \lambda = 0\\
-        \frac{\partial L}{\partial y} &= 2y + \mu x + \lambda = 0\\
-        \frac{\partial L}{\partial \lambda} &= x + y - 5= 0\\
-        \frac{\partial L}{\partial \mu} &\leq 0 \to 4-xy \leq 0\\
-        \mu\frac{\partial L}{\partial \mu} &= 0 \to \mu(xy-4) = 0\\
-        \mu &\geq 0
+        L(x,y,\mu, \lambda)                 & = x^2+y^2 + \mu(xy-4) + \lambda(x+y-5) \\
+        \frac{\partial L}{\partial x}       & = 2x + \mu y + \lambda = 0             \\
+        \frac{\partial L}{\partial y}       & = 2y + \mu x + \lambda = 0             \\
+        \frac{\partial L}{\partial \lambda} & = x + y - 5= 0                         \\
+        \frac{\partial L}{\partial \mu}     & \leq 0 \to 4-xy \leq 0                 \\
+        \mu\frac{\partial L}{\partial \mu}  & = 0 \to \mu(xy-4) = 0                  \\
+        \mu                                 & \geq 0
     \end{align*}
 
     Reemplazamos $\mu$ por $0$:
 
     \begin{align*}
-        2x + \lambda = 0\\
-        2y + \lambda = 0\\
-        x + y - 5 = 0\\
-        x=y= \frac{5}{2}\\
+        2x + \lambda = 0 \\
+        2y + \lambda = 0 \\
+        x + y - 5 = 0    \\
+        x=y= \frac{5}{2} \\
         \lambda = -5
     \end{align*}
 
     Caso 2: $\mu \neq 0$
 
     \begin{align*}
-        2x + \mu y + \lambda = 0\\
-        2y + \mu x + \lambda = 0\\
-        x + y - 5 = 0\\
-        xy - 4 = 0\\
-        \mu(xy-4) = 0\\
+        2x + \mu y + \lambda = 0 \\
+        2y + \mu x + \lambda = 0 \\
+        x + y - 5 = 0            \\
+        xy - 4 = 0               \\
+        \mu(xy-4) = 0            \\
         xy = 4
     \end{align*}
-    
+
     Se obtiene $x=4$, $y=1$ y $\mu = 2$. También se tiene $x=1$, $y=4$ y $\mu = -1$.
 
 \end{solution}
@@ -439,11 +439,41 @@ Es un vector que contiene todas las derivadas parciales de una función. $\nabla
 
 \subsection*{Hessiano}
 
-Es la matriz de todas las segundas derivadas parciales de una función. $H(x)=\nabla^2f(x) = \left( \frac{\partial^2 f}{\partial x_i \partial x_j} \right)$ 
+Es la matriz de todas las segundas derivadas parciales de una función. $H(x)=\nabla^2f(x) = \left( \frac{\partial^2 f}{\partial x_i \partial x_j} \right)$
 
 \subsection*{Matriz Semi-Definida Positiva}
 
 Una matriz $A$ es semi-definida positiva si para todo vector $x$, se cumple que $x^T A x \geq 0$. Esto se puede demostrar si todos los valores propios de $A$ son mayores o iguales a cero.
+
+\subsubsection*{Demostrar que una matriz es semi-definida positiva}
+
+Para demostrar que una matriz es semi-definida positiva, se pueden ocupar dos métodos:
+
+\textbf{Método 1:} Calcular los valores propios de la matriz y verificar que todos son mayores o iguales a cero.
+
+\vspace{.5cm}
+
+\textbf{Método 2:} Calcular el determinante de todas las submatrices principales de la matriz. Si todos los determinantes son mayores o iguales a cero, entonces la matriz es semi-definida positiva.
+
+Las submatrices principales (o \textit{menores principales}) son:
+
+\begin{align*}
+    A_1 & = \begin{bmatrix}
+                a_{11}
+            \end{bmatrix}                    \\
+    A_2 & = \begin{bmatrix}
+                a_{11} & a_{12} \\
+                a_{21} & a_{22}
+            \end{bmatrix}                   \\
+    A_n & = \begin{bmatrix}
+                a_{11} & a_{12} & \ldots & a_{1n} \\
+                a_{21} & a_{22} & \ldots & a_{2n} \\
+                \vdots & \vdots & \ddots & \vdots \\
+                a_{n1} & a_{n2} & \ldots & a_{nn}
+            \end{bmatrix}
+\end{align*}
+
+
 
 \subsection*{Expansión de Taylor}
 
