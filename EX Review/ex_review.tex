@@ -211,8 +211,8 @@ Si $x^*$ es mínimo local de $f$, entonces $\nabla^2f(x^*)$ es semidefinida posi
 Si $f:D\to R$ de clase $C^2$. Sea $x^* \in D$ con $\nabla f(x^*)=0$ (punto crítico):
 
 \begin{enumerate}
-    \item Si $\nabla^2f(x^*)=H(f(x^*)) > 0$ entonces $x^*$ es un mínimo local \textit{estricto} de $f$.
-    \item Si $\nabla^2f(x^*)=H(f(x^*)) < 0$ entonces $x^*$ es un máximo local \textit{estricto} de $f$.
+    \item Si $\nabla^2f(x^*)=H(f(x^*)) > 0$ es definida positiva, entonces $x^*$ es un mínimo local \textit{estricto} de $f$.
+    \item Si $\nabla^2f(x^*)=H(f(x^*))$ es definida negativa, entonces $x^*$ es un máximo local \textit{estricto} de $f$. Para que sea definida negativa, las menores principales impares deben ser negativas y las pares positivas.
     \item Si $\nabla^2f(x^*)=H(f(x^*))$ es indefinida, entonces $x^*$ es un punto silla.
 \end{enumerate}
 
@@ -227,7 +227,7 @@ Si $f$ es convexa, cualquier mínimo local $x^*$ es mínimo global de $f$. Si es
     \item Si $\nabla^2 f(x)$ es definida positiva para todo $x \in D$, entonces $f$ es estrictamente convexa.
 \end{enumerate}
 
-\subsubsection{Método del Gradiente (o de Cauchy)}
+\subsubsection{Método del Gradiente (o de Cauchy) \textcolor{red}{(NO ENTRA)}}
 
 El método del gradiente es un método iterativo para encontrar un mínimo local de una función. Se dice que "la función decrece en la dirección del negativo del gradiente". Así:
 
@@ -252,6 +252,27 @@ Bajo condiciones razonables el modelo converge a un punto estacionario (punto cr
 Si $x^*$ es un mínimo local, entonces existe $r>0$ tal que si el punto inicial $x^o$ cumple $||x^o - x^*|| < r$, entonces el método converge a $x^*$. A esto se le llama \textbf{Convergencia Local}.
 
 \subsection{Optimizaci\'on con restricciones}
+
+\subsubsection{Caracterización de Puntos Óptimos}
+
+\textbf{Definición:} Sea $x \in S$, un vector $d \in \mathbb{R}^n$ es una dirección factible en $S$ con respecto a $x$ si existe $\varepsilon > 0$ tal que $x + td \in S, \forall \, t \in (0, \varepsilon]$.
+
+\textbf{Condiciones de Regularidad:} Sea $x \in S$ e $I(x) \neq \emptyset: \{i:g_i(x) = 0\}$ (conjunto de restricciones activas). Se dice que las funciones $g_i, i \in I(x)$ \textit{cumplen la condición de regularidad} en $x$ si el conjunto de direcciones factibles es adherente al \textbf{cono tangente}\footnote{El Cono Tangente es el cono generado por los gradientes de las restricciones que son activas en $x$.} en $x$.
+
+Así, se dice que $x$ es \textbf{regular} para las restricciones de P si los vectores gradientes de las restricciones activas en $x$ son linealmente independientes.
+\begin{enumerate}
+    \item 
+\end{enumerate}
+
+\textbf{1era Condición de Optimalidad:} Sea $x^*$ un mínimo local de $f$ en $S$. Si $f$ es diferenciable en $x^*$, entonces $\nabla f(x^*)^T d \geq 0$ para toda dirección factible $d$ en $S$ con respecto a $x^*$.
+
+\textbf{1nda Condición de Optimalidad:} Si $x^*$ es un mínimo local de P y se cumple la condición de regularidad en $x^*$, entonces:
+
+\begin{equation*}
+    \nabla^T f(x^*) d \leq 0, \quad \forall d\neq 0: \nabla g_i(x^*)^T d \leq 0, i\in I(x^*)
+\end{equation*}
+
+Esto es, $d$ es una dirección factible en $S$ con respecto a $x^*$.
 
 \subsubsection{Condiciones de Lagrange}
 
@@ -294,6 +315,8 @@ Luego, se debe evaluar la matriz hessiana de $\mathrm{L}(x, \lambda)$ en $(x^*, 
 Revisar \ref{problemas:lagrangiano}
 
 \subsubsection{Condiciones de Karush-Kuhn-Tucker}
+
+Las condiciones de Lagrange son útiles para restricciones de igualdad, pero no para restricciones de desigualdad. Para esto, se ocupan las condiciones de Karush-Kuhn-Tucker (KKT).
 
 Sea $x \, \in \, D$. Denotemos por $I(x)={i:g_i(x)=b_i}$ el conjunto de índices de las restricciones activas en el punto $x$.
 
