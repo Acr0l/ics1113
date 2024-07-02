@@ -196,13 +196,13 @@ Información de MIP \href{https://optimization.cbe.cornell.edu/index.php?title=M
 
 Para clasificar funciones, se denominaran de clase $C^k$ si todas sus derivadas parciales de orden $k$ son continuas \footnote{Una fución derivable es continua, pero una función continua no necesariamente es derivable.}.
 
-\subsubsection{Condiciones necesarias de primer orden}
+\subsubsection{Condición Necesaria de Primer Orden}
 
 \textbf{Teorema de Fermat:} (Sea $f(x)$ continuamente derivable) Si $f(x)$ tiene un máximo o mínimo local en $x_0$, y $f(x)$ es derivable en $x_0$, entonces $f'(x_0) = 0$.
 
 \textbf{Teorema de Fermat generalizado:} (Sea $f(x)$ continuamente derivable) Si $f(x)$ tiene un máximo o mínimo local en $x_0$, y $f(x)$ es derivable en $x_0$, entonces $\nabla f(x_0) = 0$.
 
-\subsubsection{Condicion necesaria de segundo orden}
+\subsubsection{Condición Necesaria de Segundo Orden}
 
 Si $x^*$ es mínimo local de $f$, entonces $\nabla^2f(x^*)$ es semidefinida positiva. Esto es llamado el \textbf{Criterio de la Segunda Derivada}.
 
@@ -211,7 +211,7 @@ Si $x^*$ es mínimo local de $f$, entonces $\nabla^2f(x^*)$ es semidefinida posi
 Si $f:D\to R$ de clase $C^2$. Sea $x^* \in D$ con $\nabla f(x^*)=0$ (punto crítico):
 
 \begin{enumerate}
-    \item Si $\nabla^2f(x^*)=H(f(x^*)) > 0$ es definida positiva, entonces $x^*$ es un mínimo local \textit{estricto} de $f$.
+    \item Si $\nabla^2f(x^*)=H(f(x^*))$ es definida positiva, entonces $x^*$ es un mínimo local \textit{estricto} de $f$.
     \item Si $\nabla^2f(x^*)=H(f(x^*))$ es definida negativa, entonces $x^*$ es un máximo local \textit{estricto} de $f$. Para que sea definida negativa, las menores principales impares deben ser negativas y las pares positivas.
     \item Si $\nabla^2f(x^*)=H(f(x^*))$ es indefinida, entonces $x^*$ es un punto silla.
 \end{enumerate}
@@ -227,6 +227,7 @@ Si $f$ es convexa, cualquier mínimo local $x^*$ es mínimo global de $f$. Si es
     \item Si $\nabla^2 f(x)$ es definida positiva para todo $x \in D$, entonces $f$ es estrictamente convexa.
 \end{enumerate}
 
+Heloox
 \subsubsection{Método del Gradiente (o de Cauchy) \textcolor{red}{(NO ENTRA)}}
 
 El método del gradiente es un método iterativo para encontrar un mínimo local de una función. Se dice que "la función decrece en la dirección del negativo del gradiente". Así:
@@ -257,11 +258,16 @@ Si $x^*$ es un mínimo local, entonces existe $r>0$ tal que si el punto inicial 
 
 \textbf{Definición:} Sea $x \in S$, un vector $d \in \mathbb{R}^n$ es una dirección factible en $S$ con respecto a $x$ si existe $\varepsilon > 0$ tal que $x + td \in S, \forall \, t \in (0, \varepsilon]$.
 
+\vspace*{0.5cm}
+
 \textbf{Condiciones de Regularidad:} Sea $x \in S$ e $I(x) \neq \emptyset: \{i:g_i(x) = 0\}$ (conjunto de restricciones activas). Se dice que las funciones $g_i, i \in I(x)$ \textit{cumplen la condición de regularidad} en $x$ si el conjunto de direcciones factibles es adherente al \textbf{cono tangente}\footnote{El Cono Tangente es el cono generado por los gradientes de las restricciones que son activas en $x$.} en $x$.
 
-Así, se dice que $x$ es \textbf{regular} para las restricciones de P si los vectores gradientes de las restricciones activas en $x$ son linealmente independientes.
+Así, se dice que $x$ es \textbf{regular} para las restricciones de P si los vectores gradientes de las restricciones activas en $x$ son linealmente independientes. También se pueden ocupar los tres criterios siguientes:
+
 \begin{enumerate}
-    \item 
+    \item Se dice que $x$ es regular si los gradientes de las restricciones activas en $x$ son linealmente independientes.
+    \item Se dice que $x$ es regular si el rango de la matriz jacobiana de $g(x)$ en $x$ tiene rango máximo\footnote{Al reducir la matriz Jacobiana, toda fila y columna tiene pivote}.
+    \item (Slater-Usawa) Se dice que $x$ es regular si $f$ y $g_i$ son funciones convexas y además existe $x^*$ tal que $g_i(x^*) < 0, i \in I(x)$ para restricciones no lineales y $g_i(x^*) \leq 0, i \in I(x)$ para restricciones lineales. Si se cumple, \textbf{todo el problema es regular}.
 \end{enumerate}
 
 \textbf{1era Condición de Optimalidad:} Sea $x^*$ un mínimo local de $f$ en $S$. Si $f$ es diferenciable en $x^*$, entonces $\nabla f(x^*)^T d \geq 0$ para toda dirección factible $d$ en $S$ con respecto a $x^*$.
