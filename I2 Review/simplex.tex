@@ -572,5 +572,109 @@ Esto quiere decir que si una restricción no es activa, entonces su variable dua
     No, no necesariamente. Si bien es cierto que si una variable no básica tiene costo reducido nulo, entonces el problema tiene soluciones múltiples, no necesariamente todas las soluciones múltiples son óptimas.
 \end{solution}
 
+\subsection*{Enunciado}
+
+\textbf{Problema original:}
+\[
+\begin{aligned}
+\min_{x\ge0}\ &8x_1 + 3x_2,\\
+\text{sujeto a}\quad
+&2x_1 + 3x_2 \;\ge 6,\\
+&x_1 + 5x_2 \;\le 15,\\
+&x_1, x_2 \ge 0.
+\end{aligned}
+\]
+
+\bigskip
+
+\textbf{(i) Resuelva utilizando Simplex Fase I y Fase II.} En cada iteración debe:
+\begin{itemize}
+  \item Identificar la base y la solución básica.
+  \item Calcular el valor de la función objetivo (Fase I o II).
+  \item Verificar optimalidad.
+  \item Al final (Fase II), indicar las restricciones activas.
+\end{itemize}
+
+\medskip
+
+\textbf{(ii) Análisis de sensibilidad:} Suponga que la holgura de la segunda restricción ($x_4$) tiene ahora costo $c$ en la función objetivo.  
+\begin{itemize}
+  \item Determinar para qué valores de $c$ la base óptima actual $\{x_2,x_4\}$ sigue siendo óptima.
+  \item Describir cómo cambia la base y la(s) solución(es) óptima(s) en los bordes y fuera de ese rango.
+\end{itemize}
+
+\newpage
+\subsection*{Desarrollo y Conclusiones}
+
+\subsubsection*{Fase I}
+
+\begin{align*}
+&2x_1 + 3x_2 - x_3 + y = 6,\\
+&x_1 + 5x_2 + x_4 = 15,\\
+&\min\;y,\quad x_1,x_2,x_3,x_4,y\ge0.
+\end{align*}
+
+\begin{itemize}
+  \item Base inicial: $B=\{y,x_4\}$, $N=\{x_1,x_2,x_3\}$.
+  \item Costos reducidos: $r^T = [-2,-3,1]$. La más negativa es $-3\to x_2$ entra.
+  \item Razones: $\frac{6}{3}=2$, $\frac{15}{5}=3\;\Rightarrow$ sale $y$.
+  \item Nueva base para Fase II: $\{x_2,x_4\}$.
+\end{itemize}
+
+\subsubsection*{Fase II}
+
+\[
+\min\;8x_1+3x_2,\quad
+\begin{cases}
+2x_1 + 3x_2 - x_3 = 6,\\
+x_1 + 5x_2 + x_4 = 15,\\
+x\ge0.
+\end{cases}
+\]
+Base $B=\{x_2,x_4\}$:
+\[
+A_B^{-1}=\begin{pmatrix}\tfrac13&0\\-\tfrac53&1\end{pmatrix},\quad
+r^T_N=[6,1]\ge0\;\Rightarrow\text{óptimo}.
+\]
+\begin{itemize}
+  \item Solución óptima: $(x_1,x_2,x_3,x_4)=(0,2,0,5)$.
+  \item Valor objetivo: $6$.
+  \item Restricciones activas: 
+    \begin{itemize}
+      \item $2x_1+3x_2\ge6$ ($x_3=0$),
+      \item no-negatividad de $x_1$ ($x_1=0$).
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{(ii) Análisis de sensibilidad en el costo de $x_4$}
+
+Sea $c$ el nuevo costo de la holgura $x_4$. Condición de optimalidad:  
+\[
+r_1 = 8 - \bigl[3\;\;c\bigr]\begin{pmatrix}2/3\\-7/3\end{pmatrix}
+=6+\frac{7c}{3}\ge0
+\;\Longrightarrow\;
+c\ge-\tfrac{18}{7},
+\]
+\[
+r_3 = 0 - \bigl[3\;\;c\bigr]\begin{pmatrix}-1/3\\5/3\end{pmatrix}
+=1-\tfrac{5c}{3}\ge0
+\;\Longrightarrow\;
+c\le\tfrac{3}{5}.
+\]
+\[
+\boxed{-\frac{18}{7}\le c\le \frac{3}{5}.}
+\]
+
+\begin{description}
+  \item[En los bordes $c=-\tfrac{18}{7}$:] $r_1=0\to x_1$ entra. Razones: $(2)/(2/3)=3$ sale $x_2$.  
+    Nueva base: $\{x_1,x_4\}$, múltiples óptimos en el segmento entre $(0,2,0,5)$ y $(3,0,0,12)$.
+  \item[En $c=\tfrac{3}{5}$:] $r_3=0\to x_3$ entra. Razones: $(5)/(5/3)=3$ sale $x_4$.  
+    Nueva base: $\{x_2,x_3\}$, múltiples óptimos en el segmento entre $(0,2,0,5)$ y $(0,3,3,0)$.
+  \item[Fuera del rango:]
+    \begin{itemize}
+      \item $c<-\tfrac{18}{7}\,$: $r_1<0\to x_1$ entra, sale $x_2$. Base $\{x_1,x_4\}$.
+      \item $c>\tfrac{3}{5}\,$: $r_3<0\to x_3$ entra, sale $x_4$. Base $\{x_2,x_3\}$.
+    \end{itemize}
+\end{description}
 
 \end{document}
